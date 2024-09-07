@@ -5,10 +5,9 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function EditPage(props) {
-  console.log({ props });
   let userContext = useContext(user);
-
   let { details } = props;
+
   let picture = details.picture;
 
   let [first, setName] = useState(details.first);
@@ -20,7 +19,6 @@ function EditPage(props) {
 
   function handleSave() {
     userContext.updateEditableData({ age: 12 });
-    // console.log(userContext.editableData);
     let newData = userContext.dataList.map((item) => {
       if (item.id !== userContext.isEditClicked) return item;
       item = {
@@ -32,7 +30,6 @@ function EditPage(props) {
       };
       return item;
     });
-    console.log(newData);
     debugger;
 
     userContext.setDataList(newData);

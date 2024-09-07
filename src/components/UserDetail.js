@@ -27,7 +27,6 @@ function UserDetail(props) {
   }
 
   function handleEdit() {
-    console.log(userContext);
     userContext.setIsEditClicked(id);
   }
 
