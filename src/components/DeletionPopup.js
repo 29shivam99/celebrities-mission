@@ -6,7 +6,8 @@ function DeletionPopup({ id, setIsDeleteClicked }) {
   let { setDataList, dataList } = useContext(user);
 
   function deleteUser() {
-    setDataList(dataList.filter((item) => item.id !== id));
+    let filteredData = dataList.filter((item) => item.id !== id);
+    setDataList(filteredData);
   }
 
   function cancelPopup() {

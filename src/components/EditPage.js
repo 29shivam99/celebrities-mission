@@ -8,9 +8,8 @@ function EditPage(props) {
   console.log({ props });
   let userContext = useContext(user);
 
-  let { details, isOpened, setOpenedAccordionIndex } = props;
+  let { details } = props;
   let picture = details.picture;
-  // let { picture, first, last, id, gender, country, description } = details;
 
   let [first, setName] = useState(details.first);
   let [last, setLast] = useState(details.last);
@@ -22,17 +21,23 @@ function EditPage(props) {
   function handleSave() {
     userContext.updateEditableData({ age: 12 });
     // console.log(userContext.editableData);
-    userContext.setDataList(
-      userContext.dataList.map((item) => {
-        item.age = age;
-        return item;
-      })
-    );
+    let newData = userContext.dataList.map((item) => {
+      if (item.id !== userContext.isEditClicked) return item;
+      item = {
+        ...item,
+        age: age,
+        gender: gender,
+        country: country,
+        description: description,
+      };
+      return item;
+    });
+    console.log(newData);
+    debugger;
 
+    userContext.setDataList(newData);
     userContext.setIsEditClicked(false);
   }
-
-  function handleEdit() {}
 
   function handleCancel() {
     userContext.setIsEditClicked(null);
@@ -102,12 +107,12 @@ function EditPage(props) {
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="save-details"
-          onClick={(e) => handleSave(e)}
+          onClick={() => handleCancel()}
         />
         <FontAwesomeIcon
           icon={faCircleCheck}
           className="cancel-save"
-          onClick={() => handleCancel()}
+          onClick={(e) => handleSave(e)}
         />
       </div>
     </>

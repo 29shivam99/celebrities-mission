@@ -3,8 +3,7 @@ import { user } from "../contexts/UserContext";
 
 function ExpandedUserDetails(props) {
   let userContext = useContext(user);
-  console.log(userContext);
-  // console.log("expanded", props);
+
   let { gender, country, description } = props.detail;
   let age = props.age;
   return (

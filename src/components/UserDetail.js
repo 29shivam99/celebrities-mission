@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import ExpandedUserDetails from "./ExpandedUserDetails";
 import DeletionPopup from "./DeletionPopup";
 import EditPage from "./EditPage";
@@ -16,8 +16,6 @@ function UserDetail(props) {
   let { picture, first, last, id, age } = details;
 
   let userContext = useContext(user);
-
-  // console.log(userContext);
 
   function handleAccordionClick() {
     if (openedAccordionIndex === id) setOpenedAccordionIndex(null);

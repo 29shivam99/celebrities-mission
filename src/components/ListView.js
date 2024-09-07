@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { celebritiesData } from "../utilities/celebritiesData";
 import UserDetail from "./UserDetail";
 import { user } from "../contexts/UserContext";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -7,31 +6,23 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // ! todo - delete k baad main list se deletion is left. edit me validation, edit save, then match requirement with the readme
 
 function ListView() {
-  // let [userDataList, setUserDataList] = useState(celebritiesData);
+  const [searchQuery, setSearchQuery] = useState("");
+
   let userContext = useContext(user);
-  let userDataList = userContext.dataList;
 
   let [openedAccordionIndex, setOpenedAccordionIndex] = useState(null);
 
-  function handleSearch(e) {
-    let searchedTerm = e.target.value;
-    let originalList = userContext.mainData;
-    userContext.setDataList(
-      originalList.filter(
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredUsers = searchQuery
+    ? userContext.dataList.filter(
         (item) =>
-          item.first.toLowerCase().includes(searchedTerm) ||
-          item.last.toLowerCase().includes(searchedTerm)
+          item.first.toLowerCase().includes(searchQuery) ||
+          item.last.toLowerCase().includes(searchQuery)
       )
-    );
-  }
-
-  function deleteUser(id) {
-    // setUserDataList(userDataList.filter((item) => item.id !== id));
-  }
-
-  useEffect(() => {
-    deleteUser(userContext.isUserDeleted);
-  }, [userContext.isUserDeleted]);
+    : userContext.dataList;
 
   return (
     <div className="list-container">
@@ -41,7 +32,7 @@ function ListView() {
         placeholder="Search User"
         onChange={(e) => handleSearch(e)}
       />
-      {userDataList.map((user, index) => {
+      {filteredUsers.map((user, index) => {
         return (
           <UserDetail
             key={user.id}

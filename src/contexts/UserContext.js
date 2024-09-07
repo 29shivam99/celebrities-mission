@@ -12,11 +12,9 @@ const UserContext = ({ children }) => {
     const dob = new Date(dobString);
     const today = new Date();
 
-    // Calculate the age
     let age = today.getFullYear() - dob.getFullYear();
     const monthDiff = today.getMonth() - dob.getMonth();
 
-    // If the birth month is later in the year, subtract one year
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
       age--;
     }
@@ -26,12 +24,11 @@ const UserContext = ({ children }) => {
 
   let updatedUserData = celebritiesData;
 
-  updatedUserData.map((user, index) => {
+  updatedUserData = updatedUserData.map((user, index) => {
     user.age = calculateAge(user.dob);
     return user;
   });
 
-  let mainData = updatedUserData;
   let [dataList, setDataList] = useState(updatedUserData);
 
   const [editableData, setEditableData] = useState({
@@ -58,7 +55,6 @@ const UserContext = ({ children }) => {
         updateEditableData,
         dataList,
         setDataList,
-        mainData,
       }}
     >
       {children}
