@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
+import { user } from "../contexts/UserContext";
 
 function ExpandedUserDetails(props) {
-  console.log("expanded", props);
-  let { first, last, country, description } = props;
+  let userContext = useContext(user);
+  console.log(userContext);
+  // console.log("expanded", props);
+  let { gender, country, description } = props.detail;
+  let age = props.age;
   return (
     <div>
       <div className="user-basic-details">
         <div>
           <div className="basic-detail-header">Age</div>
-          <div>{first}</div>
+          <div>{age}</div>
         </div>
         <div>
           <div className="basic-detail-header">Gender</div>
-          <div>{last}</div>
+          <div>{gender}</div>
         </div>
         <div>
           <div className="basic-detail-header">Country</div>

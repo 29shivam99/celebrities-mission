@@ -21,7 +21,7 @@ code {
 
 /*  list */
 .list-container {
-  width: 40%;
+  width: 34%;
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -43,7 +43,7 @@ code {
   align-items: center;
   gap: 5%;
   width: 100%;
-  padding: 10px;
+  padding: 20px;
   max-width: 100%;
   cursor: pointer;
 }
@@ -62,12 +62,26 @@ code {
   height: fit-content;
 }
 
+.delete-details {
+  color: red;
+  cursor: pointer;
+}
+
+.edit-details {
+  color: blue;
+  cursor: pointer;
+}
+
+.chevron-arrow {
+  margin-left: auto;
+}
+
 /* expanded user details */
 .user-basic-details,
 .user-description {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px;
 }
 
 .user-description {
@@ -87,12 +101,27 @@ code {
 }
 /* deletion */
 
+.btn-cancel,
+.btn-delete {
+  width: 70px;
+  height: 35px;
+  border-radius: 6px;
+  border: 1px solid grey;
+  background: white;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: rgb(255, 80, 80);
+  color: white;
+}
+
 .delete-popup {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* gap: 50%; */
-  height: 200px;
+  height: 160px;
   padding: 20px;
 }
 
