@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import { user } from "../contexts/UserContext";
 import crossIcon from "../images/crossIcon.png";
 
-function DeletionPopup({ id }) {
-  let userContext = useContext(user);
+function DeletionPopup({ id, setIsDeleteClicked }) {
+  let { setDataList, dataList } = useContext(user);
 
   function deleteUser() {
-    console.log(userContext, id);
-    userContext.setIsUserDeleted(id);
+    setDataList(dataList.filter((item) => item.id !== id));
+  }
+
+  function cancelPopup() {
+    setIsDeleteClicked(false);
   }
   return (
     <div className="delete-popup">
@@ -17,10 +20,13 @@ function DeletionPopup({ id }) {
           src={crossIcon}
           alt="close button"
           style={{ height: "28px", cursor: "pointer" }}
+          onClick={() => cancelPopup()}
         />
       </div>
       <div className="delete-popup-row-2">
-        <button className="btn-cancel">Cancel</button>
+        <button className="btn-cancel" onClick={() => cancelPopup()}>
+          Cancel
+        </button>
         <button className="btn-delete" onClick={() => deleteUser()}>
           Delete
         </button>

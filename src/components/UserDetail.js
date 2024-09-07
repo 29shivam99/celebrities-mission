@@ -45,7 +45,7 @@ function UserDetail(props) {
       <div className="accordion-wrapper">
         {isDeletClicked ? (
           <div>
-            <DeletionPopup id={id} />
+            <DeletionPopup id={id} setIsDeleteClicked={setIsDeleteClicked} />
           </div>
         ) : (
           <>

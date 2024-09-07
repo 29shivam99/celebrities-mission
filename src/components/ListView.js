@@ -4,6 +4,8 @@ import UserDetail from "./UserDetail";
 import { user } from "../contexts/UserContext";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+// ! todo - delete k baad main list se deletion is left. edit me validation, edit save, then match requirement with the readme
+
 function ListView() {
   // let [userDataList, setUserDataList] = useState(celebritiesData);
   let userContext = useContext(user);

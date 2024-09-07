@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
 import UserContext, { user } from "../contexts/UserContext";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function EditPage(props) {
   console.log({ props });
@@ -31,52 +34,81 @@ function EditPage(props) {
 
   function handleEdit() {}
 
+  function handleCancel() {
+    userContext.setIsEditClicked(null);
+  }
+
   return (
     <>
       <div className="user-detail-container">
         <img src={picture} className="user-image" alt="User" />
         <span>{`${first} ${last}`}</span>
-        <span>+</span>
       </div>
 
       <div>
         <div className="user-basic-details">
-          <div>
+          <div className="detail-container">
             <div className="basic-detail-header">Age</div>
             <div>
               <input
+                className="edit-input"
                 value={age}
                 onChange={(e) => {
-                  console.log("alkdjskojdlaskdolskdlskdlok");
                   setAge(e.target.value);
                 }}
               />
             </div>
           </div>
-          <div>
+          <div className="detail-container">
             <div className="basic-detail-header">Gender</div>
             <div>
-              <input value={gender} />
+              <input
+                className="edit-input"
+                value={gender}
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              />
             </div>
           </div>
-          <div>
+          <div className="detail-container">
             <div className="basic-detail-header">Country</div>
             <div>
-              <input value={country} />
+              <input
+                className="edit-input"
+                value={country}
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                }}
+              />
             </div>
           </div>
         </div>
         <div className="user-description">
           <div className="basic-detail-header">Description</div>
           <div>
-            <input value={description} />
+            <textarea
+              className="edit-input desc-input-edit"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            ></textarea>
           </div>
         </div>
       </div>
 
-      <div>
-        <button>Cancel</button>
-        <button onClick={(e) => handleSave(e)}>Save</button>
+      <div className="edit-btns-container">
+        <FontAwesomeIcon
+          icon={faCircleXmark}
+          className="save-details"
+          onClick={(e) => handleSave(e)}
+        />
+        <FontAwesomeIcon
+          icon={faCircleCheck}
+          className="cancel-save"
+          onClick={() => handleCancel()}
+        />
       </div>
     </>
   );
