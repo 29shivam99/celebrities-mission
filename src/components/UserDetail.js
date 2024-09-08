@@ -7,17 +7,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import "../styles/UserDetail.css";
 
 function UserDetail(props) {
   let [isDeletClicked, setIsDeleteClicked] = useState(false);
 
   let { details, isOpened, setOpenedAccordionIndex, openedAccordionIndex } =
     props;
+
   let { picture, first, last, id, age } = details;
 
   let userContext = useContext(user);
 
+  // this function handles the click on any any accordion header and checks - if the editing is happening on some accordion then dont do any thing otherwise set openedAccordionIndex
   function handleAccordionClick() {
+    if (userContext.editClickedFor) return;
     if (openedAccordionIndex === id) setOpenedAccordionIndex(null);
     else setOpenedAccordionIndex(id);
   }
@@ -27,10 +32,11 @@ function UserDetail(props) {
   }
 
   function handleEdit() {
-    userContext.setIsEditClicked(id);
+    userContext.setEditClickedFor(id);
   }
 
-  if (userContext.isEditClicked === id) {
+  //  if editting is happenig for a user then open EditPage else open the ExpandedUserDetails
+  if (userContext.editClickedFor === id) {
     return (
       <div className="accordion-wrapper">
         <EditPage {...props} />
@@ -53,7 +59,14 @@ function UserDetail(props) {
               <img src={picture} className="user-image" alt="User" />
               <span>{`${first} ${last}`}</span>
 
-              <FontAwesomeIcon icon={faChevronDown} className="chevron-arrow" />
+              {isOpened ? (
+                <FontAwesomeIcon icon={faChevronUp} className="chevron-arrow" />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  className="chevron-arrow"
+                />
+              )}
             </div>
             <div>
               {isOpened && (

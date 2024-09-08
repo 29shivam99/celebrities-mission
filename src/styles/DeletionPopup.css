@@ -1,0 +1,33 @@
+.btn-cancel,
+.btn-delete {
+  width: 70px;
+  height: 35px;
+  border-radius: 6px;
+  border: 1px solid grey;
+  background: white;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: rgb(255, 80, 80);
+  color: white;
+}
+
+.delete-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160px;
+  padding: 20px;
+}
+
+.delete-popup-row-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-popup-row-2 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { user } from "../contexts/UserContext";
 import crossIcon from "../images/crossIcon.png";
+import "../styles/DeletionPopup.css";
 
 function DeletionPopup({ id, setIsDeleteClicked }) {
   let { setDataList, dataList } = useContext(user);

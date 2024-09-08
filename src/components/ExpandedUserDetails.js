@@ -1,9 +1,7 @@
-import React, { useCallback, useContext } from "react";
-import { user } from "../contexts/UserContext";
+import React from "react";
+import "../styles/ExpandedUserDetails.css";
 
 function ExpandedUserDetails(props) {
-  let userContext = useContext(user);
-
   let { gender, country, description } = props.detail;
   let age = props.age;
   return (

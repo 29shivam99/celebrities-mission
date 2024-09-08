@@ -1,0 +1,24 @@
+.user-basic-details,
+.user-description {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 10px;
+}
+
+.user-description {
+  flex-direction: column;
+}
+
+.basic-detail-header {
+  color: rgb(158, 154, 154);
+  font-size: 20px;
+}
+
+.user-detail-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 10px;
+}

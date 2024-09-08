@@ -1,58 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createContext } from "react";
-import { celebritiesData } from "../utilities/celebritiesData";
+// import { celebritiesData } from "../utilities/constants/celebritiesData.js";
+import { calculateAge } from "../utilities/functions/calculateAge.js";
+import data from "../db.json";
 
 export const user = createContext();
 
 const UserContext = ({ children }) => {
   let [isUserDeleted, setIsUserDeleted] = useState(null);
-  let [isEditClicked, setIsEditClicked] = useState(false);
+  let [editClickedFor, setEditClickedFor] = useState(false);
 
-  function calculateAge(dobString) {
-    const dob = new Date(dobString);
-    const today = new Date();
-
-    let age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-      age--;
-    }
-
-    return age;
-  }
-
-  let updatedUserData = celebritiesData;
-
-  updatedUserData = updatedUserData.map((user, index) => {
+  let updatedUserData = data;
+  updatedUserData = updatedUserData?.map((user) => {
     user.age = calculateAge(user.dob);
     return user;
   });
-
   let [dataList, setDataList] = useState(updatedUserData);
 
-  const [editableData, setEditableData] = useState({
-    name: "",
-    age: "",
-    gender: "",
-    country: "",
-    description: "",
-  });
-  const updateEditableData = (newData) => {
-    setEditableData((prevData) => ({
-      ...prevData,
-      ...newData,
-    }));
-  };
   return (
     <user.Provider
       value={{
         isUserDeleted,
         setIsUserDeleted,
-        isEditClicked,
-        setIsEditClicked,
-        editableData,
-        updateEditableData,
+        editClickedFor,
+        setEditClickedFor,
         dataList,
         setDataList,
       }}
@@ -63,3 +34,23 @@ const UserContext = ({ children }) => {
 };
 
 export default UserContext;
+
+// fetch("../utilities/constants/celebritiesData.json", {
+//   headers: {
+//     "Content-Type": "application/json",
+//     Accept: "application/json",
+//   },
+// })
+//   .then((response) => {
+//     console.log(response);
+//     return response.json();
+//   })
+//   .then((data) => {
+//     debugger;
+//     updatedUserData = data;
+//     console.log(updatedUserData, "***********************8");
+//     updatedUserData = updatedUserData.map((user, index) => {
+//       user.age = calculateAge(user.dob);
+//       return user;
+//     });
+//   });

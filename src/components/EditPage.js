@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import UserContext, { user } from "../contexts/UserContext";
+import { user } from "../contexts/UserContext";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../styles/EditPage.css";
 
 function EditPage(props) {
   let userContext = useContext(user);
@@ -10,17 +11,26 @@ function EditPage(props) {
 
   let picture = details.picture;
 
-  let [first, setName] = useState(details.first);
-  let [last, setLast] = useState(details.last);
+  let [first] = useState(details.first);
+  let [last] = useState(details.last);
   let [age, setAge] = useState(details.age);
   let [gender, setGender] = useState(details.gender);
   let [country, setCountry] = useState(details.country);
   let [description, setDescription] = useState(details.description);
 
+  let [isSaveDisabled, setIsSaveDisabled] = useState(true);
+
+  function isInputValid() {
+    //let isAgeValid = isNaN(parseInt(age)) || parseInt(age) < 0 ? false : true;
+  }
+
   function handleSave() {
-    userContext.updateEditableData({ age: 12 });
+    if (!isInputValid()) {
+      alert("Wrong");
+      return;
+    }
     let newData = userContext.dataList.map((item) => {
-      if (item.id !== userContext.isEditClicked) return item;
+      if (item.id !== userContext.editClickedFor) return item;
       item = {
         ...item,
         age: age,
@@ -33,11 +43,11 @@ function EditPage(props) {
     debugger;
 
     userContext.setDataList(newData);
-    userContext.setIsEditClicked(false);
+    userContext.setEditClickedFor(null);
   }
 
   function handleCancel() {
-    userContext.setIsEditClicked(null);
+    userContext.setEditClickedFor(null);
   }
 
   return (
@@ -56,6 +66,7 @@ function EditPage(props) {
                 className="edit-input"
                 value={age}
                 onChange={(e) => {
+                  setIsSaveDisabled(false);
                   setAge(e.target.value);
                 }}
               />
@@ -68,6 +79,7 @@ function EditPage(props) {
                 className="edit-input"
                 value={gender}
                 onChange={(e) => {
+                  setIsSaveDisabled(false);
                   setGender(e.target.value);
                 }}
               />
@@ -80,6 +92,7 @@ function EditPage(props) {
                 className="edit-input"
                 value={country}
                 onChange={(e) => {
+                  setIsSaveDisabled(false);
                   setCountry(e.target.value);
                 }}
               />
@@ -93,6 +106,7 @@ function EditPage(props) {
               className="edit-input desc-input-edit"
               value={description}
               onChange={(e) => {
+                setIsSaveDisabled(false);
                 setDescription(e.target.value);
               }}
             ></textarea>
@@ -106,11 +120,17 @@ function EditPage(props) {
           className="save-details"
           onClick={() => handleCancel()}
         />
-        <FontAwesomeIcon
-          icon={faCircleCheck}
-          className="cancel-save"
-          onClick={(e) => handleSave(e)}
-        />
+        <button
+          className="btn-save-edit"
+          con={faCircleCheck}
+          disabled={isSaveDisabled}
+        >
+          <FontAwesomeIcon
+            icon={faCircleCheck}
+            className="cancel-save"
+            onClick={(e) => handleSave(e)}
+          />
+        </button>
       </div>
     </>
   );

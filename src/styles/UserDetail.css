@@ -1,0 +1,38 @@
+.accordion-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 8px;
+  margin-top: 20px;
+  height: fit-content;
+}
+
+.user-detail-container {
+  display: flex;
+  font-size: 24px;
+  font-weight: 500;
+  align-items: center;
+  gap: 5%;
+  width: 100%;
+  padding: 20px;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.chevron-arrow {
+  margin-left: auto;
+}
+
+.user-image {
+  border-radius: 50%;
+}
+
+.delete-details {
+  color: red;
+  cursor: pointer;
+}
+
+.edit-details {
+  color: blue;
+  cursor: pointer;
+}
