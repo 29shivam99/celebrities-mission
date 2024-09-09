@@ -32,6 +32,10 @@ function UserDetail(props) {
   }
 
   function handleEdit() {
+    if (age < 18) {
+      alert("User must be an adult to edit the details!");
+      return;
+    }
     userContext.setEditClickedFor(id);
   }
 

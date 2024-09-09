@@ -4,11 +4,7 @@ import { user } from "../contexts/UserContext";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../styles/ListView.css";
 
-// ! todo - delete k baad main list se deletion is left. edit me validation, edit save, then match requirement with the readme
-
 //! you can only edit the user if the user is an adult
-
-//! save button will be disabled by default and will enable only if the details have changed
 
 function ListView() {
   const [searchQuery, setSearchQuery] = useState("");

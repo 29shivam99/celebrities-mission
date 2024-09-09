@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
-// import { celebritiesData } from "../utilities/constants/celebritiesData.js";
 import { calculateAge } from "../utilities/functions/calculateAge.js";
 import data from "../db.json";
 

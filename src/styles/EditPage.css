@@ -22,6 +22,7 @@
   border: 1px solid grey;
   border-radius: 5px;
   padding: 5px;
+  display: block;
 }
 
 .detail-container {
@@ -38,4 +39,18 @@
 .btn-save-edit {
   background-color: white;
   border: none;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: red;
+}
+
+.deletion-popup-header {
+  font-size: 20px;
+}
+
+.delete-popup-cross {
+  height: "28px";
+  cursor: "pointer";
 }

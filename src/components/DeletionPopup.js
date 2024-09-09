@@ -17,11 +17,13 @@ function DeletionPopup({ id, setIsDeleteClicked }) {
   return (
     <div className="delete-popup">
       <div className="delete-popup-row-1">
-        <p style={{ fontSize: "20px" }}>Are you sure you want to delete?</p>
+        <p className="deletion-popup-header">
+          Are you sure you want to delete?
+        </p>
         <img
           src={crossIcon}
           alt="close button"
-          style={{ height: "28px", cursor: "pointer" }}
+          className="delete-popup-cross"
           onClick={() => cancelPopup()}
         />
       </div>
