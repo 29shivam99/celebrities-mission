@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createContext } from "react";
 import { calculateAge } from "../utilities/functions/calculateAge.js";
 import data from "../db.json";

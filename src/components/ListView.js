@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import UserDetail from "./UserDetail";
 import { user } from "../contexts/UserContext";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../styles/ListView.css";
 
 //! you can only edit the user if the user is an adult
